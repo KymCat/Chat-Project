@@ -10,6 +10,10 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * 텍스트 기반의 WebSocket 메세지를 처리를 수행하는 Handler
+ *
+ */
 @Slf4j
 @Component
 public class ChatWebSocketHandler extends TextWebSocketHandler {
