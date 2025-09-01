@@ -1,4 +1,4 @@
-package config.handler;
+package com.project.ChatProject.config.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -73,7 +73,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
      */
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        clientSession.remove(session); // 해쉬맵에서 제거
+        clientSession.remove(session.getId()); // 해쉬맵에서 제거
         log.info("[+] afterConnectionClosed - Session " + session.getId());
     }
 }

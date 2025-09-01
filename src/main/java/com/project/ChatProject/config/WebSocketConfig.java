@@ -1,6 +1,6 @@
-package config;
+package com.project.ChatProject.config;
 
-import config.handler.ChatWebSocketHandler;
+import com.project.ChatProject.config.handler.ChatWebSocketHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +29,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         log.info("[+] 최초 WebSocket 연결을 위한 Handler 등록");
         registry
-                .addHandler(chatWebSocketHandler, "ws-stomp")
+                .addHandler(chatWebSocketHandler, "ws-socket")
                 .setAllowedOrigins("*");
                 /*
                     addHandler() : 클라이언트에서 웹 소켓 연결을 위해 "ws-stomp"라는 엔드포인트로 연결을 시도하면
