@@ -17,7 +17,7 @@ STOMP 기반의 일대일 채팅을 구현한 프로젝트 입니다.
 
 ## 🐞 트러블 슈팅
 <details>
-    <summary>1. 프론트엔드 - 백엔드 CORS 설정</summary>
+    <summary>1. 프론트엔드 - 백엔드 CORS 설정</summary><br>
 
 ```bash
 # 에러 문구
