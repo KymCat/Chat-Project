@@ -18,10 +18,10 @@ public class ChatController {
     private final SimpMessagingTemplate template;
 
     @MessageMapping("/msg")
-    public ChatMessageDto send(@RequestBody ChatMessageDto chatMessageDto) {
+    public ChatMessageDto send(ChatMessageDto chatMessageDto) {
 
         // convertAndSend() : STOMP 브로커를 통해 메세지를 발행(pub)할 때 쓰는 메서드
-        template.convertAndSend("sub/msg", chatMessageDto.getContent());
+        template.convertAndSend("/sub/msg", chatMessageDto);
         return chatMessageDto;
     }
 }
