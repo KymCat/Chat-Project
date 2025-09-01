@@ -1,4 +1,4 @@
-package config;
+package com.project.ChatProject.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -38,11 +38,12 @@ public class WebSocketStompBrokerConfig implements WebSocketMessageBrokerConfigu
 
         /*
          *  addEndpoint : 클라이언트가 STOMP(WebSocket) 연결을 맺을 때 접근할 URL을 지정
+         *  setAllowedOrigins : 허용할 Origin 설정 => '*' 설정 시 오류
          *  withSockJS : WebSocket을 지원하지 않는 브라우저를 위한 대체 기술
          */
         registry
                 .addEndpoint("/ws-stomp")
-                .setAllowedOrigins("<http://localhost:8080>") // CORS 설정
+                .setAllowedOrigins("http://localhost:3000") // CORS 설정
                 .withSockJS();
     }
 }
