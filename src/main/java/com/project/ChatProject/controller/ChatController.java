@@ -16,6 +16,13 @@ public class ChatController {
     // 특정 사용자에게 메시지를 보내는데 사용되는 STOMP을 이용한 템플릿
     private final SimpMessagingTemplate template;
 
+    @MessageMapping("/enter")
+    public ChatMessageDto ender(ChatMessageDto chatMessageDto) {
+        chatMessageDto.setContent(chatMessageDto.getSender() + " 님이 입장하였습니다.");
+        template.convertAndSend("/sub/enter", chatMessageDto);
+        return chatMessageDto;
+    }
+
     @MessageMapping("/msg")
     public ChatMessageDto send(ChatMessageDto chatMessageDto) {
 
