@@ -14,10 +14,13 @@ public class ChatMessageDto {
     private String content;
     private String sender;
     private String type;
+    private String roomId;
 
-    public ChatMessageDto(String content, String sender, String type) {
+    public ChatMessageDto(String content, String sender, String type, String roomId) {
         this.content = content;
         this.sender = sender;
         this.type = type;
+        this.roomId = roomId;
     }
+
 }

@@ -19,7 +19,7 @@ public class ChatController {
     @MessageMapping("/enter")
     public ChatMessageDto ender(ChatMessageDto chatMessageDto) {
         chatMessageDto.setContent(chatMessageDto.getSender() + " 님이 입장하였습니다.");
-        template.convertAndSend("/sub/enter", chatMessageDto);
+        template.convertAndSend("/sub/enter/" + chatMessageDto.getRoomId(), chatMessageDto);
         return chatMessageDto;
     }
 
@@ -27,7 +27,7 @@ public class ChatController {
     public ChatMessageDto send(ChatMessageDto chatMessageDto) {
 
         // convertAndSend() : STOMP 브로커를 통해 메세지를 발행(pub)할 때 쓰는 메서드
-        template.convertAndSend("/sub/msg", chatMessageDto);
+        template.convertAndSend("/sub/msg/" + chatMessageDto.getRoomId() , chatMessageDto);
         return chatMessageDto;
     }
 }
