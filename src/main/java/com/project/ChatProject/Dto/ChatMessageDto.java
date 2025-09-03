@@ -13,9 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 public class ChatMessageDto {
     private String content;
     private String sender;
+    private String type;
 
-    public ChatMessageDto(String content, String sender) {
+    public ChatMessageDto(String content, String sender, String type) {
         this.content = content;
         this.sender = sender;
+        this.type = type;
     }
 }
