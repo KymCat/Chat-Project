@@ -1,21 +1,77 @@
 # 💬 ***CHAT PROJECT***
-## 🔊 프로젝트 소개
+### 🔊 프로젝트 소개
 STOMP 기반의 일대일 채팅을 구현한 프로젝트 입니다.
-
-## 🎨 Dependencies
+##
+### 🎨 Dependencies
 - *Spring Web*
 - *Spring WebSocket*
 - *Mustache*
 - *Lombok*
 
-
-## 💻 개발환경
+##
+### 💻 개발환경
 - **Version** : Java 17
 - **IDE** : IntelliJ
 - **Framework** : SpringBoot 3.4.3
 
+##
+### ❓STOMP란 ?
+> STOMP(Simple or Streaming Text Oriented Messaging Protocol)  
+>   
+> 텍스트 기반 메시징 프로토콜로, 웹소켓 같은 전송 계층 위에서 동작하면서 메시지 송수신을 표준화해주는 역할을 한다.
+> 
 
-## 🐞 트러블 슈팅
+#### - 웹소켓만 사용한다면 ?
+클라이언트와 서버가 그저 문자열만 주고받는 형태, 이 메세지가 채팅인지, 알림인지, 어디로 전달해야하는지,
+같은 것을 직접 규칙을 정해 해석해야한다.
+  
+#### - STOMP를 사용한다면 ?
+메세지에 헤더와 명령 구조가 생겨서, `SEND`, `SUBSCRIBE`, `UNSUBSCRIBE`, `CONNECT`, `DISCONNECT` 
+같은 공통된 명령을 정의해준다. 즉 HTTP가 웹에서 요청/응답을 규칙으로 만든 것처럼
+STOMP는 메시징에서의 규칙을 만들어준다.
+
+#### - STOMP 구조
+```
+COMMAND
+header1:value1
+header2:value2
+...
+
+body^@
+```
+
+- COMMAND (명령어)  
+첫 줄에 들어가며, 클라이언트 ↔ 서버가 어떤 동작을 하는지 정의
+`예: CONNECT, SEND, SUBSCRIBE, MESSAGE, DISCONNECT`
+  
+
+- Header (헤더)  
+키-값 쌍으로 여러 줄이 입력   
+`예: destination:/topic/chatroom/1`
+
+
+- Body (본문)  
+실제 메시지 데이터. JSON, 문자열 등 자유롭게 들어감
+  
+
+- Frame 종료 (\0 널 문자)  
+마지막에 \0이 붙어서 프레임 끝을 알림
+
+#### - STOMP 명령어
+- SEND  
+특정 destination(예: /topic/chatroom/1)으로 메시지 발송
+
+- SUBSCRIBE  
+어떤 destination을 구독해서 메시지를 수신
+
+- MESSAGE  
+서버가 클라이언트로 전달하는 메시지
+
+- CONNECT / DISCONNECT  
+연결 관리
+
+##
+### 🐞 트러블 슈팅
 <details>
     <summary>1. 프론트엔드 - 백엔드 CORS 설정</summary><br>
 
@@ -67,5 +123,6 @@ registry
 오류가 발생하지 않는다.
 </details>
 
-## 🏷 출처
+##
+### 🏷 출처
 - [소켓 연결 및 구성](https://adjh54.tistory.com/573#5.%20ChatWebSocketHandler%20%ED%81%B4%EB%9E%98%EC%8A%A4%20%EA%B5%AC%EC%84%B1-1-11)
